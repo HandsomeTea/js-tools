@@ -23,3 +23,12 @@ export default (charsCount: number, alphabet: string): string => {
 export const isURL = (str: string): boolean => /^(https?:\/\/|data:)/.test(str);
 
 export const isEmail = (email: string): boolean => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
+
+export const randomString = (charsCount: number, alphabet: string): string => {
+    const digits = [];
+
+    for (let i = 0; i < charsCount; i++) {
+        digits[i] = alphabet[Math.floor(Math.random() * alphabet.length)];
+    }
+    return digits.join('');
+};
