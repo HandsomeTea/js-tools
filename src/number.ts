@@ -9,9 +9,15 @@ export function fixedNumString(num: number | string, length?: number) {
     if (!length || length < 2) {
         length = 2;
     }
+    const numStr = `${num}`.trim();
+    const fixLen = length - numStr.length;
 
-    const _fixLen = length - `${num}`.trim().length;
-    const _fixStr = _fixLen > 0 ? (0).toFixed(_fixLen - 1).replace('.', '') : '';
+    if (fixLen <= 0) {
+        return numStr;
+    }
 
-    return _fixStr + num;
+    return (0).toFixed(fixLen).substring(2) + num;
+    // return Array(fixLen).fill('0').join('') + num;
 }
+
+export const numberThousandth = (num: number) => `${num}`.replace(/(?=(\B)(\d{3})+$)/g, ',')

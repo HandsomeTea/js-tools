@@ -35,6 +35,8 @@ export const hmacSha1 = (string: string, secret: string, encode: BinaryToTextEnc
 
 export const base64 = (string: string): string => Buffer.from(string).toString('base64');
 
+export type PasswordAlgorithm = 'sha-256' | 'sha-1'
+
 export const passwordEncrypted = (password: string, algorithm: PasswordAlgorithm = 'sha-256') => {
     const algorithmMap: Record<PasswordAlgorithm, (...args) => string> = {
         'sha-256': sha256,
