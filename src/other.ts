@@ -9,10 +9,7 @@ export const delay = async (time = 1000): Promise<void> => {
 
 type AllType = 'string' | 'number' | 'bigint' | 'nan' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'date' | 'function' | 'array' | 'null'
 
-export function typeIs<T>(input: T, target: AllType): boolean
-export function typeIs<T>(input: T): AllType
-
-export function typeIs<T>(input: T, target?: AllType) {
+export const typeIs = <T>(input: T, target?: AllType) => {
     if (Array.isArray(input)) {
         return !target ? 'array' : target === 'array';
     } else if (input === null) {
@@ -24,4 +21,4 @@ export function typeIs<T>(input: T, target?: AllType) {
     }
 
     return !target ? typeof input : target === typeof input;
-}
+};

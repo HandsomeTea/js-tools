@@ -1,5 +1,3 @@
-import { } from 'jest';
-
 import * as phone from '../src/phone';
 
 describe('phone', () => {
@@ -20,5 +18,13 @@ describe('phone', () => {
         expect(phone.displayPhone('13501194251')).toBe('135****4251');
         expect(phone.displayPhone('+8613501194251')).toBe('+86135****4251');
         expect(phone.displayPhone('+813501194251')).toBe(undefined);
+    });
+
+    test('getPhone', () => {
+        expect(phone.getPhone('132')).toBe(undefined);
+        expect(phone.getPhone('')).toBe(undefined);
+        expect(phone.getPhone('13501194251')).toBe('13501194251');
+        expect(phone.getPhone('+8613501194251')).toBe('13501194251');
+        expect(phone.getPhone('+813501194251')).toBe(undefined);
     });
 });

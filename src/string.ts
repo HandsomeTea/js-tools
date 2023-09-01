@@ -24,7 +24,14 @@ export const isURL = (str: string): boolean => /^(https?:\/\/|data:)/.test(str);
 
 export const isEmail = (email: string): boolean => /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 
-export const randomString = (charsCount: number, alphabet: string): string => {
+/**
+ * randomBy
+ *
+ * @param {number} charsCount 要生成字符串的长度
+ * @param {string} alphabet 随机来源数据，如：从123123123中随机抽取组成一个字符串
+ * @returns {string}
+ */
+export const randomBy = (charsCount: number, alphabet: string): string => {
     const digits = [];
 
     for (let i = 0; i < charsCount; i++) {
@@ -32,3 +39,6 @@ export const randomString = (charsCount: number, alphabet: string): string => {
     }
     return digits.join('');
 };
+
+/** 随机生成11位由数字和小写字母组成的字符串 */
+export const random = () => Math.random().toString(36).substring(2);

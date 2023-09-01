@@ -44,7 +44,7 @@ export const passwordEncrypted = (password: string, algorithm: PasswordAlgorithm
     };
     const _algorithm = algorithmMap[algorithm] ? algorithm : 'sha-256';
     const hashPwd = algorithmMap[_algorithm](password, 'hex');
-    const randomStr = string.randomString(10, '23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrstuvwxyz');
+    const randomStr = string.randomBy(10, '23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrstuvwxyz');
 
     return {
         encrypted: sha256(`${hashPwd}${randomStr}`) + randomStr,

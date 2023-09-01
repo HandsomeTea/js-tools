@@ -6,6 +6,7 @@ export const isPhone = (phone: unknown): boolean => typeof phone === 'string' &&
 
 /**
  * 返回隐藏中间四位的手机号
+ * 内部调用了isPhone
  *
  * @private
  * @param {string} phone
@@ -25,6 +26,7 @@ export const displayPhone = (phone: string): string | void => {
 
 /**
  * 返回11位长度的手机号
+ * 内部调用了isPhone
  *
  * @private
  * @param {string} phone
