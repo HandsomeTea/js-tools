@@ -8,7 +8,6 @@
     "test": "jest",
     "eslint": "./node_modules/.bin/eslint ./ --fix",
     "create-config": "ts-jest config:init",
-    "init-husky": "husky install",
     "prepare-husky": "./node_modules/.bin/husky install"
   },
   "author": "",
