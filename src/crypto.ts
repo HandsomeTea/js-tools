@@ -38,7 +38,7 @@ export const base64 = (string: string): string => Buffer.from(string).toString('
 export type PasswordAlgorithm = 'sha-256' | 'sha-1'
 
 export const passwordEncrypted = (password: string, algorithm: PasswordAlgorithm = 'sha-256') => {
-    const algorithmMap: Record<PasswordAlgorithm, (...args) => string> = {
+    const algorithmMap: Record<PasswordAlgorithm, (string: string, encode?: BinaryToTextEncoding) => string> = {
         'sha-256': sha256,
         'sha-1': sha1
     };
@@ -50,10 +50,10 @@ export const passwordEncrypted = (password: string, algorithm: PasswordAlgorithm
         encrypted: sha256(`${hashPwd}${randomStr}`) + randomStr,
         algorithm: _algorithm
     };
-}
+};
 
 export const passwordVerify = (password: string, encryptedPwd: string, algorithm: PasswordAlgorithm = 'sha-256') => {
-    const algorithmMap: Record<PasswordAlgorithm, (...args) => string> = {
+    const algorithmMap: Record<PasswordAlgorithm, (string: string, encode?: BinaryToTextEncoding) => string> = {
         'sha-256': sha256,
         'sha-1': sha1
     };
@@ -62,4 +62,4 @@ export const passwordVerify = (password: string, encryptedPwd: string, algorithm
     const randomStr = encryptedPwd.split('').reverse().splice(0, 10).reverse().join('');
 
     return sha256(`${formattedPassword}${randomStr}`) + randomStr === encryptedPwd;
-}
+};

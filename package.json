@@ -4,12 +4,23 @@
   "description": "常用的js工具函数",
   "main": "index.js",
   "scripts": {
-    "build": "./node_modules/.bin/tsc"
+    "build": "./node_modules/.bin/tsc",
+    "test": "jest",
+    "eslint": "./node_modules/.bin/eslint ./ --fix",
+    "create-config": "ts-jest config:init",
+    "init-husky": "husky install",
+    "prepare-husky": "./node_modules/.bin/husky install"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^29.5.4",
     "@types/node": "^20.3.2",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "eslint": "^8.48.0",
+    "husky": "^8.0.3",
+    "jest": "^29.6.4",
+    "ts-jest": "^29.1.1",
     "typescript": "^5.1.6"
   }
 }

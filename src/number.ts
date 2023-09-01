@@ -20,4 +20,4 @@ export function fixedNumString(num: number | string, length?: number) {
     // return Array(fixLen).fill('0').join('') + num;
 }
 
-export const numberThousandth = (num: number) => `${num}`.replace(/(?=(\B)(\d{3})+$)/g, ',')
+export const numberThousandth = (num: number) => `${num}`.replace(/(?=(\B)(\d{3})+$)/g, ',');
