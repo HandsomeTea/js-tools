@@ -20,3 +20,31 @@ export const fixedNumString = (num: number | string, length?: number) => {
 };
 
 export const numberThousandth = (num: number) => `${num}`.replace(/(?=(\B)(\d{3})+$)/g, ',');
+
+// export function numberThousand(num: number | string): string {
+//     // return `${num}`.replace(/(?=(\B)(\d{3})+$)/g, ',');
+//     const mark = `${num}`.includes('-')
+//     const arr = `${num}`.split('');
+//     let number = 0;
+
+//     for (let s = arr.length % 3 - 1; s < arr.length; s++) {
+//         number++;
+
+//         if (number === 3) {
+
+//         }
+//     }
+// }
+
+
+/**
+ * 生成两个数字之间的数，包括小的，不包括大的
+ *
+ * @param {number} [m=0] 默认为0
+ * @param {number} [n=0] 默认为0
+ * @returns
+ */
+export const randomNum = (m = 0, n = 0) => {
+    const split = Math.abs(n - m);
+    return Math.floor(Math.random() * split) + (m > n ? n : m);
+}
