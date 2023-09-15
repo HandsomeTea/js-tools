@@ -36,5 +36,10 @@
   "bugs": {
     "url": "https://github.com/HandsomeTea/js-tools/issues"
   },
-  "homepage": "https://github.com/HandsomeTea/js-tools#readme"
+  "homepage": "https://github.com/HandsomeTea/js-tools#readme",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "tag": "beta",
+    "access": "public"
+  }
 }
