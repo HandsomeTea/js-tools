@@ -2,7 +2,7 @@
   "name": "@sheng/js-tools",
   "version": "1.0.1",
   "description": "常用的js工具函数",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
     "test": "jest",
@@ -25,6 +25,9 @@
   "directories": {
     "test": "test"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/HandsomeTea/js-tools.git"
