@@ -46,5 +46,6 @@ export const numberThousandth = (num: number) => `${num}`.replace(/(?=(\B)(\d{3}
  */
 export const randomNum = (m = 0, n = 0) => {
     const split = Math.abs(n - m);
+
     return Math.floor(Math.random() * split) + (m > n ? n : m);
-}
+};
