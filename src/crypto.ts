@@ -47,7 +47,7 @@ export const passwordEncrypted = (password: string, algorithm: PasswordAlgorithm
     const randomStr = string.randomBy(10, '23456789ABCDEFGHJKLMNPQRSTWXYZabcdefghijkmnopqrstuvwxyz');
 
     return {
-        encrypted: sha256(`${hashPwd}${randomStr}`) + randomStr,
+        encrypted: algorithmMap[_algorithm](`${hashPwd}${randomStr}`) + randomStr,
         algorithm: _algorithm
     };
 };
@@ -61,5 +61,5 @@ export const passwordVerify = (password: string, encryptedPwd: string, algorithm
     const formattedPassword = algorithmMap[_algorithm](password);
     const randomStr = encryptedPwd.split('').reverse().splice(0, 10).reverse().join('');
 
-    return sha256(`${formattedPassword}${randomStr}`) + randomStr === encryptedPwd;
+    return algorithmMap[_algorithm](`${formattedPassword}${randomStr}`) + randomStr === encryptedPwd;
 };

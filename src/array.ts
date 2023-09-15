@@ -5,6 +5,6 @@
  * @param {Array<T>} arr
  * @returns {T}
  */
-export const getOneOf = <T>(arr: Array<T>): T => {
+export const oneOfArray = <T>(arr: Array<T>): T => {
     return arr[Math.floor(Math.random() * arr.length)];
 }

@@ -25,7 +25,7 @@ const getTimeByUnit = (timestamp: number, unit: TimeDurationUnit) => {
     return 0;
 };
 
-export const getDuration = (time: string, start?: string, unit?: TimeDurationUnit) => {
+export const getTimeDuration = (time: string, start?: string, unit?: TimeDurationUnit) => {
     const _unit = unit || 's';
 
     /** 如: 22:22:22 , 22:22:22.2 , 22:22:22.22 , 22:22:22.222 */
