@@ -1,5 +1,5 @@
 {
-  "name": "@sheng/js-tools",
+  "name": "@coco-sheng/js-tools",
   "version": "1.0.1",
   "description": "常用的js工具函数",
   "main": "dist/index.js",
