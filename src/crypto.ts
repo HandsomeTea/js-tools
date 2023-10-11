@@ -63,3 +63,5 @@ export const passwordVerify = (password: string, encryptedPwd: string, algorithm
 
     return algorithmMap[_algorithm](`${formattedPassword}${randomStr}`) + randomStr === encryptedPwd;
 };
+
+export const md5 = (str: string) => crypto.createHash('md5').update(str).digest('hex');

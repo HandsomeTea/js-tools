@@ -1,3 +1,9 @@
+/**
+ * 延迟多少毫秒
+ *
+ * @param {number} [time=1000] 单位为毫秒
+ * @returns {Promise<void>}
+ */
 export const delay = async (time = 1000): Promise<void> => {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -9,7 +15,10 @@ export const delay = async (time = 1000): Promise<void> => {
 
 type AllType = 'string' | 'number' | 'bigint' | 'nan' | 'boolean' | 'symbol' | 'undefined' | 'object' | 'date' | 'function' | 'array' | 'null'
 
-export const typeIs = <T>(input: T, target?: AllType) => {
+export function typeIs<T>(input: T, target: AllType): boolean
+export function typeIs<T>(input: T): AllType
+
+export function typeIs<T>(input: T, target?: AllType) {
     if (Array.isArray(input)) {
         return !target ? 'array' : target === 'array';
     } else if (input === null) {
@@ -21,4 +30,4 @@ export const typeIs = <T>(input: T, target?: AllType) => {
     }
 
     return !target ? typeof input : target === typeof input;
-};
+}
