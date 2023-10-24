@@ -13,4 +13,20 @@ describe('number', () => {
         expect(number.fixedNumString('12', 3)).toBe('012');
         expect(number.fixedNumString(12, 3)).toBe('012');
     });
+
+    test('numberThousandth', () => {
+
+    });
+
+    test('randomNum', () => {
+
+    });
+
+    test('add', () => {
+
+    });
+
+    test('multiply', () => {
+
+    });
 });

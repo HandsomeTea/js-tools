@@ -47,6 +47,7 @@ module.exports = {
         ['date', '日期相关'],
         ['number', '数值相关'],
         ['string', '字符串相关'],
+        ['test', '测试相关'],
         ['deps', '项目依赖'],
         ['other', '其他'],
         // 如果选择 custom ,后面会让你再输入一个自定义的 scope , 也可以不设置此项， 把后面的 allowCustomScopes 设置为 true

@@ -65,20 +65,17 @@ export const add = (num1: number | string, num2: number | string): string => {
     if (num1Str.includes('.') || num2Str.includes('.')) {
         const part1 = num1Str.split('.')[1]?.length || 0;
         const part2 = num2Str.split('.')[1]?.length || 0;
+        const count = Math.abs(part1 - part2);
 
         if (!num1Str.includes('.')) {
             num1Str = num1Str + '.' + new Array(part2).fill('0').join('');
         } if (!num2Str.includes('.')) {
             num2Str = num2Str + '.' + new Array(part1).fill('0').join('');
-        } else {
-            const count = Math.abs(part1 - part2);
-
-            if (count > 0) {
-                if (part1 > part2) {
-                    num2Str = num2Str + new Array(count).fill('0').join('');
-                } else {
-                    num1Str = num1Str + new Array(count).fill('0').join('');
-                }
+        } else if (count > 0) {
+            if (part1 > part2) {
+                num2Str = num2Str + new Array(count).fill('0').join('');
+            } else {
+                num1Str = num1Str + new Array(count).fill('0').join('');
             }
         }
     }

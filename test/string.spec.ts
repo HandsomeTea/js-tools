@@ -1,6 +1,22 @@
 import * as string from '../src/string';
 
 describe('string', () => {
+    test('stringEscape', () => {
+
+    });
+
+    test('firstCapitalize', () => {
+
+    });
+
+    test('isURL', () => {
+
+    });
+
+    test('isEmail', () => {
+
+    });
+
     test('isPhone', () => {
         expect(string.isPhone(123)).toBe(false);
         expect(string.isPhone([])).toBe(false);
@@ -26,5 +42,13 @@ describe('string', () => {
         expect(string.getPhone('13501194251')).toBe('13501194251');
         expect(string.getPhone('+8613501194251')).toBe('13501194251');
         expect(string.getPhone('+813501194251')).toBe(undefined);
+    });
+
+    test('randomBy', () => {
+
+    });
+
+    test('random', () => {
+
     });
 });
