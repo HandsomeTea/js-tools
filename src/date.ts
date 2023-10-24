@@ -1,8 +1,8 @@
 export type TimeDurationUnit = 'd' | 'h' | 'm' | 's';
 
 
-const getTimeByUnit = (timestamp: number, unit: TimeDurationUnit) => {
-    const second = Math.abs(timestamp) / 1000;
+const getTimeByUnit = (timesDuration: number, unit: TimeDurationUnit) => {
+    const second = Math.abs(timesDuration) / 1000;
 
     if (unit === 's') {
         return second;
@@ -25,6 +25,14 @@ const getTimeByUnit = (timestamp: number, unit: TimeDurationUnit) => {
     return 0;
 };
 
+/**
+ *
+ *
+ * @param {string} time 如： 22:22:22 , 22:22:22.2 , 22:22:22.22 , 22:22:22.222 , 2022-02-02 , 2022/02/02或2022-02-02 22:22:22 , 2022/02/02 22:22:22 , 最小可精确到毫秒:2022-02-02 22:22:22.222或2022/02/02 22:22:22.222
+ * @param {string} [start] 类型同time
+ * @param {TimeDurationUnit} [unit]
+ * @returns
+ */
 export const getTimeDuration = (time: string, start?: string, unit?: TimeDurationUnit) => {
     const _unit = unit || 's';
 
