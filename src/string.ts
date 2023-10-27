@@ -1,5 +1,5 @@
 /** 字符串转义 */
-export const stringEscape = (str: string): string => {
+export const escape = (str: string): string => {
     return str.replace(/([.*+?^=!:${}()|[\]/\\])/g, '\\$1');
 };
 
@@ -72,4 +72,12 @@ export const randomBy = (charsCount: number, alphabet: string): string => {
 };
 
 /** 随机生成11位由数字和小写字母组成的字符串 */
-export const random = () => Math.random().toString(36).substring(2);
+export const random = () => {
+    for (let i = 0; ; i++) {
+        const result = Math.random().toString(36).substring(2);
+
+        if (result.length === 11) {
+            return result;
+        }
+    }
+};

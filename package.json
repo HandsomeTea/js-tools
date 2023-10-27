@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "test": "jest --silent --verbose --coverage",
+    "test": "jest --verbose --coverage",
     "eslint": "eslint ./ --fix",
     "commit": "./node_modules/cz-customizable/standalone.js",
     "create-config": "ts-jest config:init",

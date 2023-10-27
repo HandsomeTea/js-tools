@@ -37,6 +37,13 @@ export const base64 = (string: string): string => Buffer.from(string).toString('
 
 export type PasswordAlgorithm = 'sha-256' | 'sha-1'
 
+/**
+ * 明文密码加密
+ *
+ * @param {string} password
+ * @param {PasswordAlgorithm} [algorithm='sha-256']
+ * @returns
+ */
 export const passwordEncrypted = (password: string, algorithm: PasswordAlgorithm = 'sha-256') => {
     const algorithmMap: Record<PasswordAlgorithm, (string: string, encode?: BinaryToTextEncoding) => string> = {
         'sha-256': sha256,

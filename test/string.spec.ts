@@ -1,20 +1,25 @@
 import * as string from '../src/string';
 
 describe('string', () => {
-    test('stringEscape', () => {
-
+    test('escape', () => {
+        expect(string.escape('.123"')).toEqual('\\.123"');
     });
 
     test('firstCapitalize', () => {
-
+        expect(string.firstCapitalize('coco')).toBe('Coco');
     });
 
     test('isURL', () => {
-
+        expect(string.isURL('www.baidu.com')).toEqual(false);
+        expect(string.isURL('http://www.baidu.com')).toEqual(true);
+        expect(string.isURL('https://www.baidu.com')).toEqual(true);
+        expect(string.isURL('data:image/png;base64,iVBORw0KGgoAAAA...')).toEqual(true);
     });
 
     test('isEmail', () => {
-
+        expect(string.isEmail('www.baidu.com')).toEqual(false);
+        expect(string.isEmail('coco@baidu.com')).toEqual(true);
+        expect(string.isEmail('coco@baidu.com.cn')).toEqual(true);
     });
 
     test('isPhone', () => {
@@ -45,10 +50,20 @@ describe('string', () => {
     });
 
     test('randomBy', () => {
+        const len = 22;
+        const str = '12345467890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRST';
+        const result = string.randomBy(len, str);
 
+        expect(result.length).toEqual(len);
+        for (let i = 0; i < len; i++) {
+            expect(str.includes(result.charAt(i))).toEqual(true);
+        }
     });
 
     test('random', () => {
+        const result = string.random();
 
+        expect(result.length).toEqual(11);
+        expect(/[a-z0-9]/g.test(result)).toEqual(true);
     });
 });

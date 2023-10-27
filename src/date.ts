@@ -5,22 +5,22 @@ const getTimeByUnit = (timesDuration: number, unit: TimeDurationUnit) => {
     const second = Math.abs(timesDuration) / 1000;
 
     if (unit === 's') {
-        return second;
+        return Number(second.toFixed(2));
     }
     const minute = second / 60;
 
     if (unit === 'm') {
-        return minute;
+        return Number(minute.toFixed(2));
     }
     const hour = minute / 60;
 
     if (unit === 'h') {
-        return hour;
+        return Number(hour.toFixed(2));
     }
     const day = hour / 24;
 
     if (unit === 'd') {
-        return day;
+        return Number(day.toFixed(2));
     }
     return 0;
 };
@@ -30,11 +30,11 @@ const getTimeByUnit = (timesDuration: number, unit: TimeDurationUnit) => {
  *
  * @param {string} time 如： 22:22:22 , 22:22:22.2 , 22:22:22.22 , 22:22:22.222 , 2022-02-02 , 2022/02/02或2022-02-02 22:22:22 , 2022/02/02 22:22:22 , 最小可精确到毫秒:2022-02-02 22:22:22.222或2022/02/02 22:22:22.222
  * @param {string} [start] 类型同time
- * @param {TimeDurationUnit} [unit]
+ * @param {TimeDurationUnit} [unit] 默认s，秒
  * @returns
  */
-export const getTimeDuration = (time: string, start?: string, unit?: TimeDurationUnit) => {
-    const _unit = unit || 's';
+export const getTimeDuration = (time: string, option?: { start?: string, unit?: TimeDurationUnit }) => {
+    const { start, unit = 's' } = option || { start: undefined, unit: undefined };
 
     /** 如: 22:22:22 , 22:22:22.2 , 22:22:22.22 , 22:22:22.222 */
     const regx1 = /^\d{2}:\d{2}:\d{2}(\.\d{1,3})?$/;
@@ -47,11 +47,11 @@ export const getTimeDuration = (time: string, start?: string, unit?: TimeDuratio
         if (start) {
             const timestamp = new Date(`1970-01-01 ${time} GMT`).getTime() - new Date(`1970-01-01 ${start} GMT`).getTime();
 
-            return getTimeByUnit(timestamp, _unit);
+            return getTimeByUnit(timestamp, unit);
         }
         const timestamp = new Date(`1970-01-01 ${time} GMT`).getTime() - new Date('1970-01-01 00:00:00 GMT').getTime();
 
-        return getTimeByUnit(timestamp, _unit);
+        return getTimeByUnit(timestamp, unit);
     }
 
     /** 如: 2022-02-02 , 2022/02/02或2022-02-02 22:22:22 , 2022/02/02 22:22:22 , 最小可精确到毫秒:2022-02-02 22:22:22.222或2022/02/02 22:22:22.222  */
@@ -62,7 +62,7 @@ export const getTimeDuration = (time: string, start?: string, unit?: TimeDuratio
     }
     const timestamp = new Date(`${time} GMT`).getTime() - new Date(`${start} GMT`).getTime();
 
-    return getTimeByUnit(timestamp, _unit);
+    return getTimeByUnit(timestamp, unit);
 };
 
 
@@ -71,8 +71,8 @@ import { fixedNumString } from './number';
 /**
  * 生成 yyyy-MM-ddTHH:mm:ss.SSSXXX 格式的UTC时间
  */
-export const getUTCTime = (): string => {
-    const now = new Date();
+export const getUTCTime = (date?: Date): string => {
+    const now = date || new Date();
     const { year, month, day, hour, minute, seconds, milliseconds } = {
         year: now.getUTCFullYear(),
         month: fixedNumString(now.getUTCMonth() + 1),
