@@ -22,4 +22,17 @@ describe('other', () => {
         expect(other.typeIs([{ test: 1 }])).toBe('array');
         expect(other.typeIs(null)).toBe('null');
     });
+
+    test('singledInstance', () => {
+        class Test {
+            constructor() {
+
+            }
+        }
+        const T1 = other.singledInstance(Test);
+        const t1 = new T1();
+        const t2 = new T1();
+
+        expect(t1).toBe(t2);
+    });
 });
