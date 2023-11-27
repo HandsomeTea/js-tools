@@ -35,4 +35,20 @@ describe('other', () => {
 
         expect(t1).toBe(t2);
     });
+
+    // test('deepClone', () => {
+    //     expect(other.deepClone(() => { }) instanceof Function).toBe(true);
+    //     class Test {
+    //         public a: number;
+    //         constructor() {
+    //             this.a = 1;
+    //         }
+    //     }
+    //     const test = new Test();
+
+    //     expect(other.deepClone(test) instanceof Test).toBe(true);
+    //     const obj = { a: 1, b: '213', c: new Date(), d: Symbol() };
+
+    //     expect(other.deepClone(obj).c.getTime()).toEqual(obj.c.getTime());
+    // });
 });

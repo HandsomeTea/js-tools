@@ -32,6 +32,19 @@ export function typeIs<T>(input: T, target?: AllType) {
     return !target ? typeof input : target === typeof input;
 }
 
+// class Test {
+//     private static _ins: Test;
+//     private constructor() {
+
+//     }
+//     public static getInstance() {
+//         if (!this._ins) {
+//             this._ins = new Test();
+//         }
+//         return this._ins;
+//     }
+// }
+
 /**
  * 把一个class转换为单例模式
  *
@@ -50,7 +63,7 @@ export const singledInstance = <Class extends { new(...args: unknown[]): unknown
                 ins = new classTarget(...args);
             } else {
                 // eslint-disable-next-line no-console
-                console.debug(`${classTarget} instance ia already exist! still use it.`);
+                // console.debug(`${classTarget} instance ia already exist! still use it.`);
             }
             return ins;
         }
@@ -58,4 +71,74 @@ export const singledInstance = <Class extends { new(...args: unknown[]): unknown
 
     classTarget.prototype.constructor = proxy;
     return proxy;
+};
+
+/**
+ * 深度克隆
+ *
+ * @template T
+ * @param {T} input
+ * @returns {T}
+ */
+export const deepClone = <T>(input: T): T => {
+    const cache = new WeakMap();
+    const fn = (value: T): T => {
+        if (typeof value !== 'object' || value === null || typeof value === 'function') {
+            return value as T;
+        }
+
+        if (cache.has(value)) {
+            return cache.get(value);
+        }
+        const result = Array.isArray(value) ? [] : {};
+
+        Object.setPrototypeOf(result, Object.getPrototypeOf(value));
+        cache.set(value, result);
+
+        for (const key in value) {
+            // eslint-disable-next-line no-prototype-builtins
+            if (value.hasOwnProperty(key)) {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                result[key] = deepClone(value[key]);
+            }
+        }
+
+        return result as T;
+    };
+
+    return fn(input) as T;
+};
+
+/**
+ * 将一个函数放入微队列执行
+ *
+ * @param {() => void} fn
+ * @returns
+ */
+export const runInMicroTasks = (fn: () => void) => {
+    if (typeof fn !== 'function') {
+        return;
+    }
+    if (typeof Promise !== 'undefined') {
+        Promise.resolve().then(fn);
+        return;
+    }
+    if (typeof MutationObserver !== 'undefined') {
+        // eslint-disable-next-line no-undef
+        const observer = new MutationObserver(fn);
+        // eslint-disable-next-line no-undef
+        const textNode = document.createTextNode('');
+
+        observer.observe(textNode, {
+            characterData: true
+        });
+        textNode.data = '1';
+        return;
+    }
+    if (process && typeof process.nextTick === 'function') {
+        process.nextTick(fn);
+        return;
+    }
+    setTimeout(fn, 0);
 };

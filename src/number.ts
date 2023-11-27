@@ -21,6 +21,7 @@ export const fixedNumString = (num: number | string, length?: number) => {
 
 /** 数字千分 */
 export const numberThousandth = (num: number | string) => `${num}`.replace(/(?=(\B)(\d{3})+$)/g, ',');
+// /\B(?=(\d{3})+$)/g
 
 // export function numberThousand(num: number | string): string {
 //     // return `${num}`.replace(/(?=(\B)(\d{3})+$)/g, ',');
