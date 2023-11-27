@@ -1,6 +1,6 @@
 {
   "name": "@coco-sheng/js-tools",
-  "version": "1.0.2",
+  "version": "1.0.2-beta.1",
   "description": "常用的js工具函数",
   "main": "dist/index.js",
   "scripts": {
